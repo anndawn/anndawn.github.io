@@ -1,0 +1,131 @@
+h1{text-align: center;}
+p{text-align: center;}
+.container {
+  max-width: 600px;
+  height: auto;
+  position: relative;
+  /*margin: auto;*/
+}
+.bottom{position: relative;height: auto;margin-left: 10%;margin-top: 30px;margin-right: 10%;}
+
+.pointlist{
+  width: 100%;
+  height: 25px;
+  list-style:none;
+  margin: 0px;
+  padding: 0px;position: absolute;left: 0;
+  /* overflow: hidden; */
+}
+.pointlist .icon1{position: absolute;width: 30px;padding-top:6px;
+ height: 24px;background-color:rgb(152, 209, 203);float: left;transform: translateX(-30px);
+ border-top-right-radius: 5px;}
+.pointlist li{text-align: center;
+              vertical-align: bottom;
+              width:25%;
+              font-size: 12px;
+              line-height: 20px;
+              background-color: rgb(152, 209, 203);
+              height: 30px;
+              margin: 0;
+              display: inline-block;
+              float:left;}
+.pointlist li:first-child{border-top-left-radius: 5px;}
+.pointlist li:nth-child(4){border-top-right-radius: 5px;}
+.pointlist li:nth-child(n+13){width: 33.33333%}
+
+.pointlist li a{display: block;height: 20px; box-sizing: border-box;
+  border-right: 1px solid white;color: black;vertical-align: top;
+text-decoration: none;padding-left: 5px;padding-right: 5px;margin-top:5px;}
+.pointlist .borderchange a{border-right:1px solid rgb(152, 209, 203)}
+
+.pointlist li table {position: absolute;display: none;width: 100%;height: auto;font-size: 12px;
+  left: 0;top:30px;overflow: hidden;z-index: -200;max-height: 460px;}
+.pointlist li table tr{clear: both;float: none;background-color: #eee;margin-top: 0px;border-top: 2px solid #fff;}
+.pointlist li table:first-child{display: block;}
+.pointlist li table caption{height: 30px;line-height: 30px;font-size: 12px;font-weight:600;text-align: left;padding-left: 10px;}
+.pointlist li table tr:nth-child(2n){background-color: rgb(220,234,235)}
+.pointlist li table tr:nth-child(2n+1){background-color: rgb(242,243,245)}
+.pointlist li table tr td:first-child,.pointlist li table tr th:first-child{width: 30%;float: left;}
+.pointlist li table tr td:last-child,.pointlist li table tr th:last-child{width: 65%;float: left;text-align: center;}
+.pointlist li table tr td:last-child{text-align: left;}
+
+.icon2{position: absolute;left: 50%;top:495px;}
+.icon2 i{font-size:22px;}
+
+#icon3holder {position: absolute;left:70%;top:35px;line-height: 15px;font-size:12px;
+z-index: -200}
+#icon3{width: 20px;height: 20px;fill:rgb(231, 114, 104);color:rgb(231, 114, 104);
+background-color: none!important;padding-right:5px;}
+
+/* 散点图*/
+#legendcontainer {
+  position: absolute;
+  left: 55%;
+  top:6%;
+  width: 30%;
+  height: 12%;
+}
+.legend{
+  width: 100%;
+  height: 100%;
+}
+
+#vis {
+  width: 100%;
+  height: 500px;
+  clear: both;
+  margin-bottom: 10px;
+  position: relative;
+}
+.tooltip {
+  position: absolute;
+  width: 20%;
+  height:auto;
+  top:0;
+  left:0;
+  font-size:10px;
+  -moz-border-radius:5px;
+	border-radius: 5px;
+  border: 2px solid #000;
+  background: #e4e36c;
+	opacity: .3;
+  color: black;
+	padding: 10px;
+  z-index: 10;
+}
+.hand{position: absolute;left:30%;top: 50%;}
+
+@media (max-width:600px) {
+  svg{padding-left:5%}
+  .xtext, .ytext {font-size: 9px;}
+  g.xaxis, g.yaxis{font-size: 8px;}
+  .tooltip {width: 30%}
+  #legendcontainer {
+    position: relative;
+    width: 100%;
+    height: 60px;
+    left: 0;top:0;
+  }
+  .legend{
+    position: absolute;
+    font-size: 10px;
+    width: 50%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    margin: auto;
+    padding: 0 auto;
+    -webkit-transform: translateX(20%);
+    -ms-transform: translateX(20%);
+    transform: translateX(20%);
+  }
+  .bottom{margin-left:5%;margin-right:5%;}
+  .pointlist li a{padding: 0;font-size:9px;padding: 0;}
+  .pointlist li table {position: absolute;width: 100%;height: auto;font-size: 9px;
+    left: 0;top:30px;overflow: hidden;z-index: -200;max-height:460px;}
+  .pointlist li table caption{font-size: 9px;}
+  #icon3holder{font-size:9px;}
+}
