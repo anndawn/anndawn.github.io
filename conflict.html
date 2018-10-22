@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Reason of conflict in Nigeria</title>
+</head>
+<style media="screen">
+*{margin:0;padding:0}
+  #echarts{text-align: center;position: absolute; }
+  #pieChart{position: absolute;z-index: 22;}
+  #pieChart2{position: absolute;z-index: 22;margin-left:48%}
+
+</style>
+<body>
+  <div id="echarts" style="width: 100%; height: 100%;background-color:rgb(206, 244, 238,0.5)">
+    <div id="pieChart"></div>
+    <div id="pieChart2"></div>
+  </div>
+</body>
+</html>
+<script type="text/javascript" src="js/d3.min.js"></script>
+<script src="js/d3-scale-chromatic.min.js"></script>
+<script type="text/javascript" src="js/d3.pie.min.js"></script>
+<script type="text/javascript">
+var data0=[];
+d3.csv("reasons for violence.csv", function(data) {
+    data.forEach(function(d) {
+    d.death = +d.death;
+    d["death percentage"] = +d["death percentage"];
+    d.times=+d.times;
+    });
+    [...data0]=[...data];
+    console.log(data0);
+    let colors=["rgb(246, 185, 231)","rgb(93, 157, 36)","rgb(45, 89, 164)","rgb(235, 18, 105)","rgb(213, 82, 11)",
+  "rgb(106, 41, 143)","rgb(23, 237, 201)","rgb(219, 236, 84)","rgb(78, 113, 1)","rgb(198, 163, 17)","rgb(127, 208, 231)",
+  "rgb(116, 78, 246)","rgba(187, 77, 57)","rgb(46, 215, 139)"]
+    let arr1=data0.map((d,i)=>{return{"label":d.issue,
+                           "value":d.death,
+                           "color":colors[i]}
+    })
+  console.log(arr1);
+  // var blues = d3.scaleOrdinal(d3.schemeBlues[12]);
+  var colorScale = d3.scaleOrdinal()
+    .domain([0, 13])
+    .range(d3.schemeCategory20);
+  let arr2=data0.map((d,i)=>{return{"label":d.issue,
+                         "value":d.times,
+                         "color":colorScale(i)}
+  })
+console.log(arr2);
+  var pie = new d3pie("pieChart", {
+  	"header": {
+  		"title": {
+  			"text": "What cause most death",
+  			"fontSize": 22,
+  			"font": "courier"
+  		},
+  		"subtitle": {
+  			"text": "What are the causes of most death in Nigeria?",
+  			"color": "#999999",
+  			"fontSize": 10,
+  			"font": "courier"
+  		},
+  		"location": "pie-center",
+  		"titleSubtitlePadding": 10
+  	},
+  	"footer": {
+  		"text": "Ethnic violence are the main reason for death until 2017",
+  		"color": "#999999",
+  		"fontSize": 15,
+  		"font": "open sans",
+  		"location": "bottom-center"
+  	},
+  	"size": {
+  		"canvasWidth": 630,
+  		"pieInnerRadius": "95%",
+  		"pieOuterRadius": "70%"
+  	},
+  	"data": {
+  		"sortOrder": "label-desc",
+  		"content":arr1
+  	},
+  	"labels": {
+  		"outer": {
+  			"format": "label-percentage1",
+  			"pieDistance": 20
+  		},
+  		"inner": {
+  			"format": "none"
+  		},
+  		"mainLabel": {
+  			"fontSize": 11
+  		},
+  		"percentage": {
+  			"color": "#999999",
+  			"fontSize": 11,
+  			"decimalPlaces": 0
+  		},
+  		"value": {
+  			"color": "#cccc43",
+  			"fontSize": 11
+  		},
+  		"lines": {
+  			"enabled": true,
+  			"color": "#777777"
+  		},
+  		"truncation": {
+  			"enabled": true
+  		}
+  	},
+  	"effects": {
+  		"pullOutSegmentOnClick": {
+  			"effect": "linear",
+  			"speed": 400,
+  			"size": 8
+  		}
+  	},
+  	"misc": {
+  		"colors": {
+  			"segmentStroke": "#000000"
+  		}
+  	}
+  });
+
+  var pie2 = new d3pie("pieChart2", {
+    "header": {
+      "title": {
+        "text": "What cause most uprises",
+        "fontSize": 20,
+        "font": "courier"
+      },
+      "subtitle": {
+        "text": "How many uprises of each kind in Nigeria?",
+        "color": "#999999",
+        "fontSize": 10,
+        "font": "courier"
+      },
+      "location": "pie-center",
+      "titleSubtitlePadding": 10
+    },
+    "footer": {
+      "text": "Ethnic and religious issues each make up 1/4 of all violence",
+      "color": "#999999",
+      "fontSize": 15,
+      "font": "open sans",
+      "location": "bottom-center"
+    },
+    "size": {
+      "canvasWidth": 630,
+      "pieInnerRadius": "95%",
+      "pieOuterRadius": "70%"
+    },
+    "data": {
+      "sortOrder": "label-desc",
+      "content":arr2
+    },
+    "labels": {
+      "outer": {
+        "format": "label-percentage1",
+        "pieDistance": 20
+      },
+      "inner": {
+        "format": "none"
+      },
+      "mainLabel": {
+        "fontSize": 11
+      },
+      "percentage": {
+        "color": "#999999",
+        "fontSize": 11,
+        "decimalPlaces": 0
+      },
+      "value": {
+        "color": "#cccc43",
+        "fontSize": 11
+      },
+      "lines": {
+        "enabled": true,
+        "color": "#777777"
+      },
+      "truncation": {
+        "enabled": true
+      }
+    },
+    "effects": {
+      "pullOutSegmentOnClick": {
+        "effect": "linear",
+        "speed": 400,
+        "size": 8
+      }
+    },
+    "misc": {
+      "colors": {
+        "segmentStroke": "#000000"
+      }
+    }
+  });
+});
+
+
+</script>
